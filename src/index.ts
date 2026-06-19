@@ -10,7 +10,7 @@ export { createRuntime, Runtime } from "./runtime/runtime"
 export type { RuntimeConfig } from "./runtime/runtime"
 export type { CommandResult, CommandError } from "./contracts/command-result"
 export type { Middleware } from "./contracts/middleware"
-export type { Adapter } from "./contracts/adapter"
+
 export type { ExecCmdOption, ExecSubCmdOption, NextChildNode } from "./contracts/context"
 export type { StandardSchemaV1, StandardTypedV1 } from "./contracts/standard-schema"
 export type { CommandMeta, CommandOptionMeta as CommandOptionMetaOut, CommandChildMeta as CommandChildMetaOut } from "./runtime/introspection"

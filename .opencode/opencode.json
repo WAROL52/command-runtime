@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "agent": {
+    "command-runtime": {
+      "description": "Spécialiste du projet Command Runtime — architecture, code, tests, documentation",
+      "mode": "subagent",
+      "prompt": "Tu es un assistant spécialisé dans le projet Command Runtime. Tu connais l'architecture, les décorateurs, le runtime, les adapters et les tests. Réponds de manière concise et précise."
+    }
+  }
+}

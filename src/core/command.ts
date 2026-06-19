@@ -35,10 +35,13 @@ export abstract class CommandInterface<
   }
 
   printHelp(): void {
+    console.log(this.renderHelp())
+  }
+
+  renderHelp(): string {
     const meta = this.commandMeta
     if (!meta) {
-      console.log(`No metadata for command`)
-      return
+      return `No metadata for command\n`
     }
     const lines: string[] = []
     lines.push(`${meta.name}${meta.description ? ` — ${meta.description}` : ""}`)
@@ -90,7 +93,7 @@ export abstract class CommandInterface<
       lines.push("")
     }
 
-    console.log(lines.join("\n"))
+    return lines.join("\n")
   }
 
   protected getOption<T = unknown>(key: string): T | undefined {

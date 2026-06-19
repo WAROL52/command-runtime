@@ -20,6 +20,7 @@ export interface HttpAdapterOptions<TContext> {
   pathPrefix?: string
   parsePath?: (request: HttpRequest) => string[]
   parseInput?: (request: HttpRequest) => unknown
+  parseOptions?: (request: HttpRequest) => { level: number; name: string; value: unknown }[]
 }
 
 export async function handleHttp<TContext>(
@@ -39,6 +40,10 @@ export async function handleHttp<TContext>(
     ? opts.parseInput(request)
     : defaultParseInput(request)
 
+  const optionEntries = opts.parseOptions
+    ? opts.parseOptions(request)
+    : defaultParseOptions(request)
+
   if (path.length === 0) {
     return {
       status: 400,
@@ -46,7 +51,7 @@ export async function handleHttp<TContext>(
     }
   }
 
-  const result = await runtime.execute(path, input, [], context)
+  const result = await runtime.execute(path, input, optionEntries, context)
 
   return formatResult(result)
 }
@@ -66,6 +71,18 @@ function defaultParsePath(urlPath: string, prefix: string): string[] {
 
 function defaultParseInput(request: HttpRequest): unknown {
   return request.body
+}
+
+function defaultParseOptions(request: HttpRequest): { level: number; name: string; value: unknown }[] {
+  const query = (request.path ?? "").split("?")[1]
+  if (!query) return []
+  const entries: { level: number; name: string; value: unknown }[] = []
+  for (const part of query.split("&")) {
+    const [key, rawVal] = part.split("=")
+    if (!key) continue
+    entries.push({ level: 0, name: key, value: rawVal ?? true })
+  }
+  return entries
 }
 
 function formatResult(result: CommandResult<any>): HttpResponse {

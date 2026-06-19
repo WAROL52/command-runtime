@@ -174,18 +174,22 @@ export class CommandExecutor {
   }
 
   private async applyMiddlewares(
-    _cmd: CommandInterface,
+    cmd: CommandInterface,
     opt: any,
     handler?: () => Promise<CommandResult<any>>
   ): Promise<CommandResult<any>> {
     let chain: () => Promise<CommandResult<any>> = handler ?? (async () => {
-      if (typeof _cmd.execute === "function") {
-        return _cmd.execute(opt)
+      if (typeof cmd.execute === "function") {
+        return cmd.execute(opt)
       }
       return { success: true, data: undefined }
     })
 
-    for (const mw of [...this.globalMiddlewares].reverse()) {
+    const cmdMeta = CR.getMeta(cmd.constructor as unknown as CommandClass)
+    const cmdMiddlewares: Middleware[] = cmdMeta?.middleware ?? []
+
+    const allMiddlewares = [...this.globalMiddlewares, ...cmdMiddlewares]
+    for (const mw of [...allMiddlewares].reverse()) {
       const next: () => Promise<CommandResult<any>> = chain
       chain = async () => mw.handle(opt.input, opt.context, async (_input: any, _context: any) => {
         return next()

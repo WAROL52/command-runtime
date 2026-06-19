@@ -19,7 +19,7 @@ export class CompletionGenerator<TContext = any> {
     const prog = this.runtime.name
     const tree = this.runtime.getCommandTree()
     const cmdNames = this.collectNames(tree)
-    const optNames = this.collectOptionNames(tree)
+    const optNames = this.collectOptionNames(tree, [])
 
     return `
 _${prog}_completion() {
@@ -94,7 +94,7 @@ _${prog}
     return names
   }
 
-  private collectOptionNames(tree: CommandMeta[]): string[] {
+  private collectOptionNames(tree: CommandMeta[], parents: string[] = []): string[] {
     const names: string[] = []
     for (const cmd of tree) {
       if (cmd.options) {
@@ -105,12 +105,9 @@ _${prog}
       }
       if (cmd.children) {
         for (const child of cmd.children) {
-          const childMeta = this.runtime.findCommand([cmd.name, child.name])
-          if (childMeta?.options) {
-            for (const opt of childMeta.options) {
-              names.push(`--${opt.name}`)
-              if (opt.alias) names.push(`-${opt.alias}`)
-            }
+          const childMeta = this.runtime.findCommand([...parents, cmd.name, child.name])
+          if (childMeta) {
+            names.push(...this.collectOptionNames([childMeta], [...parents, cmd.name]))
           }
         }
       }
