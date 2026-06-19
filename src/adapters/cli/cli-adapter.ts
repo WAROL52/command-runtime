@@ -30,13 +30,7 @@ export async function runCli<TContext>(opts: CliAdapterOptions<TContext>): Promi
     return 0
   }
 
-  let parsed: ParseResult
-  try {
-    parsed = runtime.parse(argv) as ParseResult
-  } catch (err: any) {
-    stderr(`[PARSE ERROR] ${err.message ?? String(err)}`)
-    return 2
-  }
+  const parsed = runtime.parse(argv)
 
   const { path, input, optionEntries } = parsed
 

@@ -6,23 +6,29 @@
 
 ## Structure
 
-8 fichiers de test, **89 tests**, 0 erreurs TypeScript.
+10 fichiers de test, **130 tests**, 0 erreurs TypeScript.
 
 ```
 tests/
 ├── basic-flow.test.ts        #  6 — Parsing, exécution, help, erreurs, arbre
-├── cli-adapter.test.ts       #  6 — CLI: execution, erreur, help, version, context factory
-├── http-adapter.test.ts      #  6 — HTTP: POST, GET, 400, path prefix, parsePath, empty path
-├── ai-adapter.test.ts        #  6 — AI: toTools, OpenAI, MCP, execute, nested, error
+├── cli-adapter.test.ts       # 11 — CLI: execution, erreur, help, version, context,
+│                             #       console fallback, null/undefined data, multi-errors
+├── http-adapter.test.ts      # 13 — HTTP: POST, GET, 400, prefix, parsePath, empty path,
+│                             #       malformed query, flag-only, double slash, trailing slash,
+│                             #       custom parseInput/Options, query-string input
+├── ai-adapter.test.ts        # 12 — AI: toTools, OpenAI, MCP, execute, nested, error,
+│                             #       no arguments field, options in schema, 3-level recursion
+├── openai-adapter.test.ts    #  9 — OpenAI: empty description, options params, empty input,
+│                             #       execute with params, undefined/null args, unknown tool,
+│                             #       multiple tools, nested dotted tools
+├── mcp-server.test.ts        # 14 — MCP: initialize, list, call, undefined/null args,
+│                             #       unknown method, parse error, empty lines, partial chunks,
+│                             #       multi-message, close, failure result, string/null id
 ├── deploy-app.test.ts        #  5 — 3-level chain, defaults, help, CLI, mid-level
 ├── docgen.test.ts            #  3 — Markdown, options/args, per-command files
 ├── completion.test.ts        #  3 — Bash, Zsh, runtime method
 └── e2e.test.ts               # 54 — Middleware, MCP, validation, erreurs, CLI/HTTP/AI e2e
 ```
-
-## CI — GitHub Actions
-
-Le projet intègre une pipeline CI via `.github/workflows/ci.yml` :
 
 ```yaml
 name: CI
@@ -52,16 +58,17 @@ npm run typecheck       # tsc --noEmit
 npx vitest run tests/e2e.test.ts   # e2e uniquement
 ```
 
-## Couverture des tests E2E
+## Couverture des tests
 
 | Module | Tests | Couverture |
 |--------|-------|------------|
 | Execution Pipeline | 5 | flat, 3-level, defaults, argv, parse |
 | Validation | 2 | input schema rejection |
-| CLI Adapter | 6 | deep `--help`, `-h`, `-V`, exit code, context factory |
-| HTTP Adapter | 6 | context factory, query string, custom parseInput/Options |
-| AI & MCP | 4 | tools with options, flat/nested, OpenAI adapter |
-| MCP Server | 7 | initialize, tools/list, tools/call, errors, close |
+| CLI Adapter | 6 | deep `--help`, `-h`, `-V`, exit code, context factory, console fallback, null/undefined data, multi-errors |
+| HTTP Adapter | 6 | context factory, query string, custom parseInput/Options, malformed query, flag-only option, double/trailing slash |
+| AI Adapter | 4 | toTools, OpenAI/MCP formats, execute by dotted name, error |
+| OpenAI Adapter | 9 | empty description, options → parameters, empty input, execute with params, undefined/null args, unknown tool, multiple tools, nested dotted |
+| MCP Server | 7 | initialize, tools/list, tools/call, errors, close, partial chunks, multi-message, empty lines, string/null id |
 | Middleware | 3 | global, command-level, global+command chain |
 | Introspection | 7 | findCommand, help root/deep/unknown, tree, docs, completion |
 | Registry & Resolver | 4 | deep resolve, aliases, boolean/short flags |

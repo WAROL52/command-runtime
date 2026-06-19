@@ -8,11 +8,6 @@ export interface CommandOptionMeta {
   output?: { description?: string }
 }
 
-export interface CommandChildMeta {
-  name: string
-  description?: string
-}
-
 export interface CommandMeta {
   name: string
   alias?: string
@@ -21,8 +16,10 @@ export interface CommandMeta {
   input?: boolean
   output?: boolean
   options?: CommandOptionMeta[]
-  children?: CommandChildMeta[]
+  children?: CommandMeta[]
 }
+
+export type CommandChildMeta = CommandMeta
 
 export class Introspector {
   constructor(private registry: CommandRegistry) {}
@@ -125,15 +122,15 @@ export class Introspector {
       }
     }
 
-    const children: CommandChildMeta[] = []
+    const children: CommandMeta[] = []
     if (rawMeta.children) {
       for (const [, child] of Object.entries<any>(rawMeta.children)) {
         const childClass = child.childClass as CommandClass
-        const childMeta = (childClass as any).__commandMeta
-        children.push({
-          name: child.name,
-          description: childMeta?.description,
-        })
+        const childMeta = this.buildMeta(childClass)
+        if (childMeta) {
+          childMeta.name = child.name
+          children.push(childMeta)
+        }
       }
     }
 

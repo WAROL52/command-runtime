@@ -24,11 +24,13 @@ interface CliAdapterOptions<TContext> {
 
 ### Fonctionnalités
 
-- Parse `process.argv` (ou `argv` personnalisé)
+- Parse `process.argv` (ou `argv` personnalisé, doit commencer par le nom du programme)
 - `--help` / `-h` → affiche l'aide
 - `--version` / `-V` → affiche la version
 - Exécute la commande avec les options parsées
-- Code de retour : 0 (succès), 1 (erreur commande), 2 (erreur parsing)
+- Code de retour : 0 (succès), 1 (erreur commande)
+- Si `argv` est omis, utilise `process.argv` (qui inclut `node` + chemin — adapter le format en production)
+- Si `out` est omis, utilise `console.log` / `console.error`
 
 ### Exemple
 
@@ -72,6 +74,7 @@ interface HttpAdapterOptions<TContext> {
 - Extrait le path de commande depuis l'URL (par défaut après `/commands/`)
 - Le `body` de la requête est utilisé comme input
 - Les paramètres de query string sont parsés comme options
+- Gère les doubles slashes, trailing slash, query flags sans valeur, clés vides
 - Retourne `{ status, body, headers }`
 
 ### Exemple

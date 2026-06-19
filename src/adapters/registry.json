@@ -53,9 +53,9 @@
           "target": "~/src/adapters/ai/mcp-server.ts"
         },
         {
-          "path": "ai/openai.ts",
+          "path": "ai/openai-adapter.ts",
           "type": "registry:file",
-          "target": "~/src/adapters/ai/openai.ts"
+          "target": "~/src/adapters/ai/openai-adapter.ts"
         },
         {
           "path": "ai/types.ts",
