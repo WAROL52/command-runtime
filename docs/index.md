@@ -21,6 +21,47 @@ Bienvenue dans la documentation de **Command Runtime**, une librairie TypeScript
 
 ---
 
+## Installation
+
+### Copie directe (style shadcn)
+
+```bash
+cp -r src/ votre-projet/
+```
+
+### shadcn registry (dépôt public GitHub)
+
+```bash
+npx shadcn@latest add warol52/command-runtime/runtime-core
+```
+
+---
+
+## Configuration
+
+### tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false
+  }
+}
+```
+
+### package.json
+
+```bash
+npm install zod
+npm install -D typescript vitest @types/node
+```
+
+---
+
 ## Quick Start
 
 ```ts
@@ -48,3 +89,4 @@ const result = await runtime.execute(["hello"], "World", [], { user: "alice" })
 - [README principal](../README.md)
 - [Agent spécialisé](../.opencode/agents/command-runtime.md)
 - [Skill complète](../.opencode/skills/command-runtime/SKILL.md)
+- [registry.json](../registry.json) — GitHub Registry

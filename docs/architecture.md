@@ -85,6 +85,20 @@ Input (argv / HTTP / AI call)
     CommandResult
 ```
 
+## CI / Intégration continue
+
+Le projet utilise GitHub Actions (`.github/workflows/ci.yml`) avec :
+
+- **Node.js** 18, 20, 22 en matrix
+- **`npm ci`** → **`npm run typecheck`** → **`npm test`**
+- Déclenché sur `push` et `pull_request` vers `main`
+
+Badge CI :
+
+```markdown
+[![CI](https://github.com/WAROL52/command-runtime/actions/workflows/ci.yml/badge.svg)](https://github.com/WAROL52/command-runtime/actions/workflows/ci.yml)
+```
+
 ## Navigation
 
 - **Suivant :** [Commandes →](commands.md) — comprendre le cycle de vie d'une commande
