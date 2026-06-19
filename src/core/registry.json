@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "core",
+      "type": "registry:item",
+      "title": "Core Command Classes",
+      "description": "CommandInterface abstract class and metadata types",
+      "files": [
+        {
+          "path": "command.ts",
+          "type": "registry:file",
+          "target": "~/src/core/command.ts"
+        },
+        {
+          "path": "metadata.ts",
+          "type": "registry:file",
+          "target": "~/src/core/metadata.ts"
+        }
+      ]
+    }
+  ]
+}

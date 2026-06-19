@@ -1,0 +1,189 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "command-runtime",
+  "homepage": "https://github.com/warol52/command-runtime",
+  "description": "A TypeScript library for building strongly-typed command systems — CLI, HTTP, AI, MCP",
+  "include": [
+    "src/contracts/registry.json",
+    "src/core/registry.json",
+    "src/decorators/registry.json",
+    "src/runtime/registry.json",
+    "src/adapters/registry.json"
+  ],
+  "items": [
+    {
+      "name": "documentation",
+      "type": "registry:item",
+      "title": "Full Documentation",
+      "description": "Complete documentation with architecture, commands, decorators, runtime, adapters, AI integration, middleware, introspection, examples, testing",
+      "files": [
+        {
+          "path": "README.md",
+          "type": "registry:file",
+          "target": "~/README.md"
+        },
+        {
+          "path": "docs/index.md",
+          "type": "registry:file",
+          "target": "~/docs/index.md"
+        },
+        {
+          "path": "docs/architecture.md",
+          "type": "registry:file",
+          "target": "~/docs/architecture.md"
+        },
+        {
+          "path": "docs/commands.md",
+          "type": "registry:file",
+          "target": "~/docs/commands.md"
+        },
+        {
+          "path": "docs/decorators.md",
+          "type": "registry:file",
+          "target": "~/docs/decorators.md"
+        },
+        {
+          "path": "docs/runtime.md",
+          "type": "registry:file",
+          "target": "~/docs/runtime.md"
+        },
+        {
+          "path": "docs/adapters.md",
+          "type": "registry:file",
+          "target": "~/docs/adapters.md"
+        },
+        {
+          "path": "docs/ai-integration.md",
+          "type": "registry:file",
+          "target": "~/docs/ai-integration.md"
+        },
+        {
+          "path": "docs/middleware.md",
+          "type": "registry:file",
+          "target": "~/docs/middleware.md"
+        },
+        {
+          "path": "docs/introspection.md",
+          "type": "registry:file",
+          "target": "~/docs/introspection.md"
+        },
+        {
+          "path": "docs/examples.md",
+          "type": "registry:file",
+          "target": "~/docs/examples.md"
+        },
+        {
+          "path": "docs/testing.md",
+          "type": "registry:file",
+          "target": "~/docs/testing.md"
+        }
+      ]
+    },
+    {
+      "name": "example-deploy-app",
+      "type": "registry:item",
+      "title": "Deploy App Example",
+      "description": "3-level command chain example: app → project → deploy with nextChild and options",
+      "registryDependencies": [
+        "warol52/command-runtime/runtime-core",
+        "warol52/command-runtime/decorators"
+      ],
+      "files": [
+        {
+          "path": "examples/deploy-app/commands.ts",
+          "type": "registry:file",
+          "target": "~/examples/deploy-app/commands.ts"
+        }
+      ]
+    },
+    {
+      "name": "project-setup",
+      "type": "registry:item",
+      "title": "Project Setup Files",
+      "description": "TypeScript config, package.json, .gitignore for a command-runtime project",
+      "files": [
+        {
+          "path": "tsconfig.json",
+          "type": "registry:file",
+          "target": "~/tsconfig.json"
+        },
+        {
+          "path": ".gitignore",
+          "type": "registry:file",
+          "target": "~/.gitignore"
+        }
+      ]
+    },
+    {
+      "name": "testing-setup",
+      "type": "registry:item",
+      "title": "Testing Setup",
+      "description": "Vitest test configuration and test examples for command-runtime",
+      "registryDependencies": [
+        "warol52/command-runtime/runtime-core",
+        "warol52/command-runtime/decorators"
+      ],
+      "files": [
+        {
+          "path": "tests/basic-flow.test.ts",
+          "type": "registry:file",
+          "target": "~/tests/basic-flow.test.ts"
+        },
+        {
+          "path": "tests/deploy-app.test.ts",
+          "type": "registry:file",
+          "target": "~/tests/deploy-app.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "agent-config",
+      "type": "registry:item",
+      "title": "OpenCode Agent & Skill Configuration",
+      "description": "Project-specific agent instructions, specialized agent, and complete skill for command-runtime development",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "type": "registry:file",
+          "target": "~/AGENTS.md"
+        },
+        {
+          "path": ".opencode/opencode.json",
+          "type": "registry:file",
+          "target": "~/.opencode/opencode.json"
+        },
+        {
+          "path": ".opencode/agents/command-runtime.md",
+          "type": "registry:file",
+          "target": "~/.opencode/agents/command-runtime.md"
+        },
+        {
+          "path": ".opencode/skills/command-runtime/SKILL.md",
+          "type": "registry:file",
+          "target": "~/.opencode/skills/command-runtime/SKILL.md"
+        }
+      ]
+    },
+    {
+      "name": "all",
+      "type": "registry:item",
+      "title": "Complete Command Runtime",
+      "description": "Everything: source code, adapters, documentation, examples, tests, and agent configuration",
+      "registryDependencies": [
+        "warol52/command-runtime/contracts",
+        "warol52/command-runtime/core",
+        "warol52/command-runtime/decorators",
+        "warol52/command-runtime/runtime-core",
+        "warol52/command-runtime/introspection",
+        "warol52/command-runtime/cli-adapter",
+        "warol52/command-runtime/http-adapter",
+        "warol52/command-runtime/ai-adapter",
+        "warol52/command-runtime/documentation",
+        "warol52/command-runtime/example-deploy-app",
+        "warol52/command-runtime/testing-setup",
+        "warol52/command-runtime/agent-config"
+      ],
+      "files": []
+    }
+  ]
+}

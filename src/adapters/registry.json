@@ -1,0 +1,68 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "cli-adapter",
+      "type": "registry:item",
+      "title": "CLI Adapter",
+      "description": "Terminal adapter — parses argv, handles --help/--version, exit codes",
+      "registryDependencies": [
+        "runtime-core"
+      ],
+      "files": [
+        {
+          "path": "cli/cli-adapter.ts",
+          "type": "registry:file",
+          "target": "~/src/adapters/cli/cli-adapter.ts"
+        }
+      ]
+    },
+    {
+      "name": "http-adapter",
+      "type": "registry:item",
+      "title": "HTTP Adapter",
+      "description": "HTTP adapter — POST/GET, path prefix, query options, JSON response",
+      "registryDependencies": [
+        "runtime-core"
+      ],
+      "files": [
+        {
+          "path": "http/http-adapter.ts",
+          "type": "registry:file",
+          "target": "~/src/adapters/http/http-adapter.ts"
+        }
+      ]
+    },
+    {
+      "name": "ai-adapter",
+      "type": "registry:item",
+      "title": "AI, MCP & OpenAI Adapters",
+      "description": "AI tool generation, MCP server (JSON-RPC stdio), OpenAI function calling format",
+      "registryDependencies": [
+        "runtime-core"
+      ],
+      "files": [
+        {
+          "path": "ai/ai-adapter.ts",
+          "type": "registry:file",
+          "target": "~/src/adapters/ai/ai-adapter.ts"
+        },
+        {
+          "path": "ai/mcp-server.ts",
+          "type": "registry:file",
+          "target": "~/src/adapters/ai/mcp-server.ts"
+        },
+        {
+          "path": "ai/openai.ts",
+          "type": "registry:file",
+          "target": "~/src/adapters/ai/openai.ts"
+        },
+        {
+          "path": "ai/types.ts",
+          "type": "registry:file",
+          "target": "~/src/adapters/ai/types.ts"
+        }
+      ]
+    }
+  ]
+}

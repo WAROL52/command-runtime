@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "decorators",
+      "type": "registry:item",
+      "title": "TypeScript Decorators",
+      "description": "@Command, @CommandChild, @CommandOption decorators",
+      "files": [
+        {
+          "path": "command.decorator.ts",
+          "type": "registry:file",
+          "target": "~/src/decorators/command.decorator.ts"
+        },
+        {
+          "path": "child.decorator.ts",
+          "type": "registry:file",
+          "target": "~/src/decorators/child.decorator.ts"
+        },
+        {
+          "path": "option.decorator.ts",
+          "type": "registry:file",
+          "target": "~/src/decorators/option.decorator.ts"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "contracts",
+      "type": "registry:item",
+      "title": "Contracts & Types",
+      "description": "Core TypeScript contracts: StandardSchemaV1, CommandResult, Middleware, Context",
+      "files": [
+        {
+          "path": "command-result.ts",
+          "type": "registry:file",
+          "target": "~/src/contracts/command-result.ts"
+        },
+        {
+          "path": "context.ts",
+          "type": "registry:file",
+          "target": "~/src/contracts/context.ts"
+        },
+        {
+          "path": "middleware.ts",
+          "type": "registry:file",
+          "target": "~/src/contracts/middleware.ts"
+        },
+        {
+          "path": "standard-schema.ts",
+          "type": "registry:file",
+          "target": "~/src/contracts/standard-schema.ts"
+        }
+      ]
+    }
+  ]
+}

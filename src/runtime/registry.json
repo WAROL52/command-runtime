@@ -1,0 +1,63 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "runtime-core",
+      "type": "registry:item",
+      "title": "Runtime Engine",
+      "description": "Registry, Resolver, Executor — core command execution pipeline",
+      "registryDependencies": [
+        "contracts",
+        "core"
+      ],
+      "files": [
+        {
+          "path": "registry.ts",
+          "type": "registry:file",
+          "target": "~/src/runtime/registry.ts"
+        },
+        {
+          "path": "resolver.ts",
+          "type": "registry:file",
+          "target": "~/src/runtime/resolver.ts"
+        },
+        {
+          "path": "executor.ts",
+          "type": "registry:file",
+          "target": "~/src/runtime/executor.ts"
+        },
+        {
+          "path": "runtime.ts",
+          "type": "registry:file",
+          "target": "~/src/runtime/runtime.ts"
+        }
+      ]
+    },
+    {
+      "name": "introspection",
+      "type": "registry:item",
+      "title": "Introspection & Help",
+      "description": "Command tree, help generator, documentation generator, shell completion",
+      "registryDependencies": [
+        "runtime-core"
+      ],
+      "files": [
+        {
+          "path": "introspection.ts",
+          "type": "registry:file",
+          "target": "~/src/runtime/introspection.ts"
+        },
+        {
+          "path": "docgen.ts",
+          "type": "registry:file",
+          "target": "~/src/runtime/docgen.ts"
+        },
+        {
+          "path": "completion.ts",
+          "type": "registry:file",
+          "target": "~/src/runtime/completion.ts"
+        }
+      ]
+    }
+  ]
+}
